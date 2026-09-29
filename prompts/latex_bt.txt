@@ -1,0 +1,521 @@
+1. Mục đích của #bt
+Khi thầy nói “sửa theo quy tắc #bt”, tôi phải:
+- Chuyển nội dung đề/bài tập sang LaTeX sạch, copy dùng ngay.
+- Giữ đúng nội dung gốc, dữ kiện, đáp án và lời giải.
+- Ghép đề + đáp án + lời giải + hình + bảng của từng câu trong cùng một môi trường.
+- Không tự thêm kiến thức, không tự đổi dạng câu hỏi, không rút gọn hoặc diễn đạt lại nếu không cần thiết.
+- Chỉ sửa:
+  - lỗi chính tả;
+  - lỗi LaTeX;
+  - lỗi ký hiệu;
+  - lỗi định dạng;
+  - lỗi rõ ràng về đáp án nếu thầy yêu cầu kiểm tra.
+Thông thường xử lí theo từng cụm khoảng 10 câu/lần khi tài liệu dài.
+2. Cấu trúc tổng thể của đề
+QUY TẮC #bt
+
+-1. Mục đích của #bt
+Khi thầy nói “sửa theo quy tắc #bt”, tôi phải:
+- Chuyển nội dung đề/bài tập sang LaTeX sạch, copy dùng ngay.
+- Giữ đúng nội dung gốc, dữ kiện, đáp án và lời giải.
+- Ghép đề + đáp án + lời giải + hình + bảng của từng câu trong cùng một môi trường.
+- Không tự thêm kiến thức, không tự đổi dạng câu hỏi, không rút gọn hoặc diễn đạt lại nếu không cần thiết.
+- Chỉ sửa:
+  - lỗi chính tả;
+  - lỗi LaTeX;
+  - lỗi ký hiệu;
+  - lỗi định dạng;
+  - lỗi rõ ràng về đáp án nếu thầy yêu cầu kiểm tra.
+Thông thường xử lí theo từng cụm khoảng 10 câu/lần khi tài liệu dài.
+2. Cấu trúc tổng thể của đề
+Đề kiểm tra chuẩn hiện tại chia thành 3 phần:
+\subsection{PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn}
+
+...
+
+\subsection{PHẦN II. Câu trắc nghiệm đúng sai}
+
+...
+
+\subsection{PHẦN III. Câu trắc nghiệm trả lời ngắn}
+
+Quy định quan trọng
+Hiện tại dùng:
+\subsection
+
+không dùng:
+\section*
+\subsection*
+
+nếu thầy yêu cầu sửa một đề theo chuẩn #bt hiện hành.
+Không tự tạo \documentclass, package, preamble... nếu thầy chỉ gửi phần nội dung đề.
+3. Môi trường chung cho mỗi câu
+Mọi câu hỏi dùng:
+\begin{ex}
+Nội dung câu hỏi.
+
+...
+
+\loigiai{
+Nội dung lời giải.
+}
+\end{ex}
+
+Không được viết kiểu:
+\begin{ex}
+Câu 1. ...
+
+hoặc:
+\begin{ex}[Bài toán chuyển động]
+
+Tức là:
+- bỏ số câu viết thủ công;
+- không thêm tên bài;
+- không thêm tiêu đề sau \begin{ex};
+- bộ đếm của hệ thống tự đánh số.
+4. PHẦN I — Trắc nghiệm 4 phương án
+Dùng:
+\begin{ex}
+Nội dung câu hỏi.
+\choice
+{Phương án A}
+{\True Phương án B}
+{Phương án C}
+{Phương án D}
+\loigiai{
+...
+}
+\end{ex}
+
+Quy tắc
+- Dùng đúng \choice.
+- Thường đủ 4 phương án.
+- Đáp án đúng đặt:
+\True
+
+ngay trước nội dung phương án đúng.
+Ví dụ:
+\choice
+{$10\ \mathrm{m/s}$}
+{\True $20\ \mathrm{m/s}$}
+{$30\ \mathrm{m/s}$}
+{$40\ \mathrm{m/s}$}
+
+Không ghi:
+Đáp án: B
+
+trong nội dung câu.
+5. PHẦN II — Đúng/Sai
+Cấu trúc chuẩn:
+\begin{ex}
+Nội dung chung của câu hỏi.
+\choiceTF[t]
+{Mệnh đề a)}
+{\True Mệnh đề b)}
+{Mệnh đề c)}
+{\True Mệnh đề d)}
+\loigiai{
+\begin{itemchoice}
+    \itemch Sai. Giải thích...
+    \itemch Đúng. Giải thích...
+    \itemch Sai. Giải thích...
+    \itemch Đúng. Giải thích...
+\end{itemchoice}
+}
+\end{ex}
+
+Quy định
+Luôn dùng:
+\choiceTF[t]
+
+không đổi thành các môi trường Đ/S khác.
+Mệnh đề đúng phải có:
+\True
+
+Ví dụ:
+\choiceTF[t]
+{\True Vận tốc của vật tăng đều theo thời gian.}
+{Gia tốc của vật bằng không.}
+{\True Đồ thị $v-t$ là một đường thẳng.}
+{Vật chuyển động thẳng đều.}
+
+Lời giải Đúng/Sai
+Ưu tiên:
+\begin{itemchoice}
+    \itemch ...
+    \itemch ...
+    \itemch ...
+    \itemch ...
+\end{itemchoice}
+
+Thứ tự lời giải phải trùng đúng thứ tự các mệnh đề.
+6. PHẦN III — Trả lời ngắn
+Chuẩn hiện tại dùng:
+\begin{ex}
+Nội dung câu hỏi.
+\shortans[oly]{12,5}
+\loigiai{
+...
+}
+\end{ex}
+
+Cập nhật gần nhất là ưu tiên:
+\shortans[oly]{...}
+
+Ví dụ:
+\begin{ex}
+Một vật chuyển động với vận tốc $5\ \mathrm{m/s}$ trong $4\ \mathrm{s}$. Quãng đường vật đi được bằng bao nhiêu mét?
+\shortans[oly]{20}
+\loigiai{
+Ta có
+\[
+s=vt=5.4=20\ \mathrm{m}.
+\]
+}
+\end{ex}
+
+Không được tự chuyển tự luận thành TLN
+Một câu không có A–D chưa chắc là trả lời ngắn.
+Nếu bản gốc là tự luận thì phải giữ là tự luận, không tự đưa:
+\shortans
+
+vào.
+7. Câu tự luận
+Nếu đề có phần tự luận riêng thì vẫn dùng:
+\begin{ex}
+...
+\loigiai{
+...
+}
+\end{ex}
+
+Các ý a), b), c)... giữ theo cấu trúc thích hợp.
+Nếu cần đúng kiểu lời giải thầy đang dùng, có thể là:
+\begin{enumerate}[a)]
+    \item ...
+    \item ...
+\end{enumerate}
+
+hoặc khi chỉ là các dòng liệt kê lý thuyết thì ưu tiên:
+\begin{itemize}
+    \item ...
+    \item ...
+\end{itemize}
+
+Không tự đổi cấu trúc ý của lời giải nếu bản gốc đã có cấu trúc rõ ràng.
+8. \loigiai
+Mỗi câu nên có:
+\loigiai{
+...
+}
+
+Nếu nguồn chưa có lời giải thì để:
+\loigiai{}
+
+Không tự bịa lời giải khi nhiệm vụ chỉ là chuyển mã.
+Nếu thầy yêu cầu giải bài, khi đó mới bổ sung lời giải hoàn chỉnh.
+9. Phân số
+Quy tắc cố định:
+\dfrac{a}{b}
+
+Không dùng:
+\frac{a}{b}
+
+Ví dụ sửa:
+v=\frac{s}{t}
+
+thành:
+v=\dfrac{s}{t}
+
+Áp dụng cả đề bài, đáp án và lời giải.
+10. Phép nhân
+Quy ước của thầy:
+2.10^5
+
+không ưu tiên:
+2\cdot 10^5
+
+và không dùng:
+2\times 10^5
+
+nếu chỉ mang nghĩa phép nhân số học.
+Ví dụ:
+Q=2.10^5\ \mathrm{J}
+
+11. Số thập phân
+Dùng dấu phẩy:
+0,25
+
+không đổi thành:
+0.25
+
+Ví dụ:
+m=0,25\ \mathrm{kg}
+
+12. Đơn vị
+Đơn vị đặt trong math mode, ưu tiên định dạng chuẩn:
+20\ \mathrm{m}
+5\ \mathrm{m/s}
+300\ \mathrm{K}
+25\ ^\circ\mathrm{C}
+
+Có thể dùng:
+\mathrm{}
+
+cho đơn vị khi cần.
+Không viết đơn vị dính sát số.
+13. Ký hiệu Vật lí riêng của thầy
+Một số quy ước đã chốt:
+Động năng
+Dùng:
+W_{\text{đ}}
+
+không dùng:
+W_đ
+
+Suất điện động
+Dùng:
+\mathcal{E}
+
+Khối lượng riêng
+Dùng:
+\rho
+
+Thế năng trọng trường
+Ưu tiên:
+mgz
+
+theo hệ ký hiệu của thầy.
+14. Hình ảnh
+Nếu đề hoặc lời giải có hình thì không được bỏ hình.
+Chuẩn cơ bản:
+\begin{center}
+    \includegraphics[width=10 cm]{Images/Hinh2.8}
+\end{center}
+
+Quy tắc tên hình
+Ưu tiên:
+Hinh2.8
+Hinh6.1
+Hinh6.1G
+
+Không ưu tiên:
+Hinh2_8
+
+Nếu nguồn ghi:
+Hinh2_8
+
+thì chuẩn hóa thành:
+Hinh2.8
+
+nếu phù hợp cấu trúc thư mục hiện tại.
+Hình xuất hiện trong lời giải cũng phải giữ, không chỉ hình trong đề.
+15. Bảng
+Mọi bảng từ Word/PDF/ảnh phải chuyển thành bảng LaTeX.
+Thông thường:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+...
+\end{tabular}
+\end{center}
+
+Không để bảng dạng text thô.
+Bảng rất dài có thể dùng:
+longtable
+
+16. Công thức toán
+Tất cả ký hiệu toán học phải nằm đúng math mode:
+$v$
+$a$
+$F$
+$25\ \mathrm{N}$
+
+Công thức riêng dòng:
+\[
+F=ma.
+\]
+
+Có thể chuẩn hóa ngoặc bằng:
+\left( ... \right)
+
+khi thực sự cần.
+17. Không dùng \chemfig trong #bt
+Hiện tại không tự chuyển công thức hóa học sang:
+\chemfig
+
+Giữ cách viết LaTeX thông thường trừ khi thầy yêu cầu riêng.
+18. Giữ nguyên dạng câu hỏi
+Đây là nguyên tắc rất quan trọng.
+Có 4 lựa chọn
+→ dùng:
+\choice
+
+Đúng/Sai
+→ dùng:
+\choiceTF[t]
+
+Câu trả lời ngắn
+→ dùng:
+\shortans[oly]{...}
+
+Tự luận
+→ giữ tự luận.
+Không được thấy câu không có A–D rồi tự động biến thành trả lời ngắn.
+19. Khi trộn đề
+Nếu thầy yêu cầu:
+Trộn đề gốc thành 3 mã đề mới.
+
+thì phải giữ nguyên ba phần.
+Phần I
+Được đảo:
+- thứ tự câu;
+- thứ tự 4 phương án.
+Phải đồng bộ:
+\True
+
+với đáp án sau khi đảo.
+Phần II
+Được đảo:
+- thứ tự câu;
+- thứ tự 4 mệnh đề.
+Nhưng khi đảo mệnh đề phải đảo đồng thời:
+1. nội dung mệnh đề;
+2. vị trí \True;
+3. lời giải tương ứng trong itemchoice.
+Không được đảo mệnh đề mà lời giải vẫn giữ thứ tự cũ.
+Phần III
+Được đảo:
+- thứ tự câu.
+Nhưng giữ nguyên:
+\shortans[oly]{...}
+
+và lời giải của chính câu đó.
+20. Không trộn câu giữa các phần
+Ví dụ đề có:
+- Phần I: 18 câu;
+- Phần II: 4 câu;
+- Phần III: 6 câu.
+Sau khi trộn vẫn phải là:
+18 + 4 + 6
+Không được chuyển câu Phần I sang Phần II hoặc Phần III.
+21. Ẩn đáp án
+Khi thầy yêu cầu bản đề học sinh / ẩn đáp án, phải giữ cấu trúc câu hỏi nhưng xử lí theo cơ chế ẩn đáp án của hệ thống đề.
+Không được xóa nội dung phương án đúng hoặc phá \True một cách làm mất khả năng sinh bản giáo viên.
+Mục tiêu là cùng một nguồn có thể phục vụ:
+- bản học sinh;
+- bản giáo viên;
+- đáp án/lời giải.
+22. Khoảng trống tự luận
+Nếu câu tự luận cần chỗ cho học sinh làm bài thì phải giữ hoặc thêm khoảng trống theo cấu trúc tài liệu của thầy.
+Có thể dùng các lệnh hệ thống đang có như:
+\vspace{...}
+
+hoặc các macro khoảng trống nếu file gốc đã định nghĩa.
+Không để lời giải hiện trực tiếp trong phần dành cho học sinh nếu đang làm bản đề.
+23. Giữ nguyên nội dung gốc
+Tôi không được tự ý:
+- đổi số liệu;
+- đổi tên vật;
+- đổi tình huống;
+- thay đáp án;
+- làm câu dễ hơn;
+- viết lại theo văn phong khác;
+- thêm dữ kiện;
+- bỏ dữ kiện;
+- thay câu tự luận bằng trắc nghiệm;
+- thay câu trả lời ngắn bằng tự luận;
+- bỏ hình;
+- bỏ bảng;
+- bỏ lời giải.
+Trừ khi thầy trực tiếp yêu cầu sửa nội dung.
+24. Không thêm nội dung thừa trong code
+Khi thầy yêu cầu:
+“Gửi toàn bộ nội dung cho tôi để copy”
+
+thì ưu tiên gửi một khối mã liên tục, không chen giải thích giữa code.
+Không thêm các dòng kiểu:
+% Đây là câu 1
+% Đây là đáp án
+% Tôi đã chỉnh sửa
+
+nếu nguồn không có.
+25. Kiểm tra trước khi trả code
+Trước khi gửi mã #bt, cần rà:
+- đủ \begin{ex} / \end{ex};
+- đủ {} của \choice;
+- đúng vị trí \True;
+- đúng 4 mệnh đề Đ/S;
+- lời giải Đ/S khớp mệnh đề;
+- đúng \shortans[oly];
+- đủ \loigiai;
+- không còn \frac;
+- hình không bị bỏ;
+- bảng không bị mất;
+- đơn vị và math mode hợp lí;
+- không tự thêm số câu;
+- không phá ký hiệu tiếng Việt;
+- đáp án đúng thực sự khớp với lời giải nếu có thể kiểm tra.
+- đáp án trả lời ngắn tối đa 4 ký tự
+Mẫu chuẩn tổng hợp
+\subsection{PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn}
+\setcountter{ex}{0}
+\begin{ex}
+Một vật chuyển động thẳng đều với vận tốc $5\ \mathrm{m/s}$. Trong thời gian $4\ \mathrm{s}$, quãng đường vật đi được bằng
+\choice
+{$10\ \mathrm{m}$}
+{$15\ \mathrm{m}$}
+{\True $20\ \mathrm{m}$}
+{$25\ \mathrm{m}$}
+\loigiai{
+Ta có
+\[
+s=vt=5.4=20\ \mathrm{m}.
+\]
+}
+\end{ex}
+
+
+\subsection{PHẦN II. Câu trắc nghiệm đúng sai}
+\setcountter{ex}{0}
+\begin{ex}
+Một vật chuyển động thẳng nhanh dần đều.
+\choiceTF[t]
+{\True Gia tốc của vật không đổi.}
+{Vận tốc của vật không đổi.}
+{\True Độ lớn vận tốc tăng theo thời gian.}
+{Gia tốc của vật bằng không.}
+\loigiai{
+\begin{itemchoice}
+    \itemch Đúng. Chuyển động thẳng biến đổi đều có gia tốc không đổi.
+    \itemch Sai. Vận tốc biến đổi theo thời gian.
+    \itemch Đúng. Với chuyển động nhanh dần, độ lớn vận tốc tăng.
+    \itemch Sai. Gia tốc khác không.
+\end{itemchoice}
+}
+\end{ex}
+
+
+\subsection{PHẦN III. Câu trắc nghiệm trả lời ngắn}
+\setcountter{ex}{0}
+\begin{ex}
+Một vật chuyển động đều với vận tốc $10\ \mathrm{m/s}$ trong thời gian $5\ \mathrm{s}$. Quãng đường vật đi được bằng bao nhiêu mét?
+\shortans[oly]{50}
+\loigiai{
+Ta có
+\[
+s=vt=10.5=50\ \mathrm{m}.
+\]
+}
+\end{ex}
+
+Tóm lại, chuẩn #bt hiện hành quan trọng nhất là:
+ex + giữ nguyên nội dung + \choice/\choiceTF[t]/\shortans[oly] đúng loại câu + \True đúng vị trí + \loigiai + \dfrac + giữ hình/bảng + dùng \subsection cho 3 phần + khi trộn phải đồng bộ hoàn toàn câu–đáp án–lời giải. Tuyệt đối không tự ý thêm dấu "."cuối của mỗi đáp án vì theo định nghĩa đã có sẵn rồi, chỉ đặt ở cuối câu hỏi.
+Phần trả lời ngắn đáp án tối đa 4 ký tự, là các con số, dấu "-" và dấu "," hoặc ".", tuyệt đối không được dùng các chữ cái để điền vào đáp án
+QUY TẮC BẮT BUỘC TRƯỚC KHI XUẤT CODE:
+    Tuân tủ quy tắc #bt
+    Trước khi in kết quả, bạn phải tự kiểm tra mã nguồn theo checklist sau:
+        1. Đóng mở môi trường: Mọi \begin{ex} bắt buộc phải có \end{ex}
+        2. Cấu trúc điền khuyết: Phần trả lời ngắn/điền khuyết phải sử dụng chính xác lệnh \shortans[oly].
+        3. Trắc nghiệm: Đảm bảo các lệnh \choice và \True không bị thiếu hoặc thừa dấu ngoặc nhọn { } và bỏ dấu "." ở cuối các đáp án vì đã có sẵn theo tôi quy ước trước đó.
+        4. Toán học và Đơn vị: Tất cả công thức vật lí, ký hiệu và đơn vị đo lường phải được bọc trong $ $ hoặc $$ $$.
+Chỉ xuất ra đoạn mã LaTeX đã hoàn thiện và vượt qua bài kiểm tra lỗi, tuyệt đối không giải thích gì thêm.
